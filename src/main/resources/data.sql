@@ -1,21 +1,15 @@
 DROP TABLE IF EXISTS `employee`;
 
 CREATE TABLE `employee` (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(250) NOT NULL,
-  age INT NOT NULL
+  age INT NOT NULL,
+  gender VARCHAR(10) NOT NULL,
+  yoj INT NOT NULL
 );
 
-INSERT INTO `employee` (name, age) VALUES
-('Aliko', 28),
-('Bill', 29),
-('Folrunsho', 30),
-('Steve', 28),
-('Ellon', 29),
-('Mark', 30),
-('Indira', 28),
-('Jack', 29),
-('Jeff', 30),
-('Kennedy', 28),
-('Gates', 29),
-('Folrunsho', 32);
+INSERT INTO `employee` (name, age, gender, yoj) VALUES
+('Senkodi', 28, 'F', 2019),
+('Muguran', 29, 'M', 2020),
+('Muthukumar', 24, 'M', 2019),
+('Nalini', 23, 'F', 2020);

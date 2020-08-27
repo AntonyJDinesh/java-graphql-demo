@@ -22,31 +22,22 @@ import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 @Configuration
 public class Beans {
 
-    @Bean("AllEmployees")
-    public DataFetcher<List<Employee>> getEmployeeDataFetcher(EmployeeService employeeService) {
+    @Bean("FilteredEmployee")
+    public DataFetcher<List<Employee>> getFilteredEmployeesDataFetcher(EmployeeService employeeService) {
         return dataFetchingEnvironment -> {
-            String bookId = dataFetchingEnvironment.getArgument("id");
-            return employeeService.getAllEmployees();
+            String gender = dataFetchingEnvironment.getArgument("gender");
+            int yoj = dataFetchingEnvironment.getArgument("yoj");
+            // int yoj = Integer.parseInt(yojs);
+            return employeeService.getFilteredEmployee(gender, yoj);
         };
     }
 
-
-    @Bean("FindEmployee")
-    public DataFetcher<Employee> getEmployeeByIdDataFetcher(EmployeeService employeeService) {
-        return dataFetchingEnvironment -> {
-            String eId = dataFetchingEnvironment.getArgument("id");
-            Long employeeId = new Long(eId);
-            return employeeService.getEmployeeById(employeeId);
-        };
-    }
 
     @Bean
     public RuntimeWiring buildWiring(EmployeeService employeeService) {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                .dataFetcher("employees", getEmployeeDataFetcher(employeeService)))
-                .type(newTypeWiring("Query")
-                .dataFetcher("employee", getEmployeeByIdDataFetcher(employeeService)))
+                .dataFetcher("employees", getFilteredEmployeesDataFetcher(employeeService)))
                 .build();
     }
 

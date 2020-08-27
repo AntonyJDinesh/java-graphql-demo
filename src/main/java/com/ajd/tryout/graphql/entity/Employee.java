@@ -13,13 +13,10 @@ public class Employee {
     private Long id;
     private String name;
     private int age;
+    private String gender;
+    private int yoj;
 
     public Employee() {}
-    public Employee(Long id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
 
     public Long getId() {
         return id;
@@ -31,5 +28,13 @@ public class Employee {
 
     public int getAge() {
         return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public int getYoj() {
+        return yoj;
     }
 }

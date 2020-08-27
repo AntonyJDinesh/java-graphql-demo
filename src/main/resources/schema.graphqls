@@ -1,10 +1,11 @@
 type Query {
-    employees: [Employee]
-    employee(id: ID): Employee
+    employees(gender: String = "A", yoj: Int = 0): [Employee]
 }
 
 type Employee {
     id: ID
     name: String
     age: Int
+    gender: String
+    yoj: Int
 }
